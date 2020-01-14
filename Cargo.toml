@@ -1,0 +1,6 @@
+[package]
+name = "x_blagues"
+version = "0.1.0"
+
+[dependencies]
+slack = "0.22.0"
