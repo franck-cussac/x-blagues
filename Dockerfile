@@ -8,8 +8,9 @@ RUN echo "fn main() {println!(\"if you see this, the build broke\")}" > src/main
 RUN cargo build --release
 RUN rm -f target/release/deps/x_blagues*
 
-# then build the real binary
-COPY ./ /app
+# then build the real app
+COPY src/ ./src
+COPY build.rs build.rs
 RUN cargo build --release
 
 FROM debian:buster-slim
