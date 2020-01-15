@@ -1,4 +1,4 @@
-FROM rustlang/rust:nightly-stretch as builder
+FROM rust:1.40-buster as builder
 
 # First make a dumb release to get all dependencies cached
 WORKDIR /app
@@ -12,8 +12,8 @@ RUN rm -f target/release/deps/x_blagues*
 COPY ./ /app
 RUN cargo build --release
 
-FROM debian:stretch-slim
-RUN apt-get update -y && apt-get install -y openssl libssl1.0-dev ca-certificates
+FROM debian:buster-slim
+RUN apt-get update -y && apt-get install -y openssl libssl-dev ca-certificates
 # copy the binary into the final image
 COPY --from=builder /app/target/release/x_blagues /x_blagues
 ENV SLACK_API_TOKEN xxx-xxx-xxx-xxx
